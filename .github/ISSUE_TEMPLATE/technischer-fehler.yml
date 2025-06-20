@@ -1,0 +1,52 @@
+name: 🐛 Technischer Fehler
+description: Technisches Problem auf der Website oder im Repository melden
+title: "[Fehler] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Du hast ein technisches Problem entdeckt? Danke fürs Melden!  
+        Bitte beschreibe es möglichst präzise, damit wir es gut nachvollziehen können.
+
+  - type: input
+    attributes:
+      label: Betroffene Seite oder Datei
+      description: Wo tritt das Problem auf?
+      placeholder: "z. B. /impressum.md oder https://elektro-glaser-gmbh.github.io/projects/xyz"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Fehlerbeschreibung
+      description: Was genau ist passiert? Was hast du erwartet?
+      placeholder: "Beim Aufruf der Projektseite erscheint ein 404-Fehler…"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Schritte zur Reproduktion
+      description: Wie kann man den Fehler reproduzieren?
+      placeholder: |
+        1. Gehe zu [Projektseite]
+        2. Klicke auf "Mehr erfahren"
+        3. Es erscheint eine Fehlermeldung
+    validations:
+      required: false
+
+  - type: input
+    attributes:
+      label: Browser oder Umgebung
+      description: Welchen Browser / welches Gerät hast du verwendet?
+      placeholder: "Firefox 125, macOS 14.5"
+    validations:
+      required: false
+
+  - type: checkboxes
+    attributes:
+      label: Beitrag einreichen
+      options:
+        - label: Ich bestätige, dass ich den [Code of Conduct](../CODE_OF_CONDUCT.md) gelesen habe und mich daran halte.
+          required: true

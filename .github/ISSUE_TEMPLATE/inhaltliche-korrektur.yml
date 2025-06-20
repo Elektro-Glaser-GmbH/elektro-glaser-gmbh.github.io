@@ -1,0 +1,41 @@
+name: 📝 Inhaltliche Korrektur
+description: Fehler in Texten, veraltete Informationen oder Layout-Probleme melden
+title: "[Korrektur] "
+labels: [bug, documentation]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke, dass du uns auf einen inhaltlichen Fehler hinweist!  
+        Bitte gib möglichst genau an, wo das Problem liegt.
+
+  - type: input
+    attributes:
+      label: Datei oder Seite
+      description: Welche Datei oder Unterseite ist betroffen?
+      placeholder: "z. B. kontakt.md, projects/solar-anlage.md"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Beschreibung des Fehlers
+      description: Was ist falsch oder unklar? Bitte zitiere ggf. den betroffenen Abschnitt.
+      placeholder: "Im Text steht: '200 Watt PV-Anlage', es müsste aber '2.000 Watt' heißen..."
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Vorschlag zur Korrektur (optional)
+      description: Wie sollte es deiner Meinung nach besser formuliert oder dargestellt werden?
+      placeholder: "Formulierungsvorschlag: 'Unsere Solaranlage liefert bis zu 2 kW Spitzenleistung.'"
+    validations:
+      required: false
+
+  - type: checkboxes
+    attributes:
+      label: Beitrag einreichen
+      options:
+        - label: Ich bestätige, dass ich den [Code of Conduct](../CODE_OF_CONDUCT.md) gelesen habe und mich daran halte.
+          required: true
