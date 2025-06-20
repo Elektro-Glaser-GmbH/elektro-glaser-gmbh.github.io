@@ -1,3 +1,4 @@
+---
 name: 📝 Inhaltliche Korrektur
 description: Fehler in Texten, veraltete Informationen oder Layout-Probleme melden
 title: "[Korrektur] "
@@ -6,14 +7,14 @@ body:
   - type: markdown
     attributes:
       value: |
-        Danke, dass du uns auf einen inhaltlichen Fehler hinweist!  
+        Danke, dass du uns auf einen inhaltlichen Fehler hinweist!
         Bitte gib möglichst genau an, wo das Problem liegt.
 
   - type: input
     attributes:
       label: Datei oder Seite
       description: Welche Datei oder Unterseite ist betroffen?
-      placeholder: "z. B. kontakt.md, projects/solar-anlage.md"
+      placeholder: "z.B. kontakt.md, projects/solar-anlage.md"
     validations:
       required: true
 

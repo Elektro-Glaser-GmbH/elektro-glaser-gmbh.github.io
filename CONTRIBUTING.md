@@ -33,9 +33,26 @@ Wir freuen uns über Vorschläge, Korrekturen und neue Inhalte.
 
 ---
 
-## 🧪 Lokales Testen (optional)
+## 🧪 Lokales Testen
 
 Du kannst deine Markdown-Dateien z. B. mit VS Code und der Erweiterung `Markdown Preview Enhanced` live ansehen.
+
+Um die Pre-Commit-Checks lokal auszuführen benötigst Du ein paar Tools (die ich evtl. bald in einen devcontainer hier packe):
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+\. "$HOME/.nvm/nvm.sh"
+nvm install 24
+node -v # Should print "v24.2.0".
+nvm current # Should print "v24.2.0".
+npm -v # Should print "11.3.0".
+npm install -g markdownlint-cli
+npm install -g cspell @cspell/dict-de-de
+pipx install pre-commit vale
+vale sync
+# pre-commit install # (evtl.)
+pre-commit run --all-files
+```
 
 ---
 

@@ -2,7 +2,7 @@
 title: Elektro-Glaser GmbH
 ---
 
-# 👋 Willkommen bei der Elektro-Glaser GmbH
+## 👋 Willkommen bei der Elektro-Glaser GmbH
 
 Wir verbinden Elektrotechnik mit moderner Digitalisierung.  
 Von klassischer Gebäudeinstallation über Smart Home – wir bringen Energie in Bewegung.

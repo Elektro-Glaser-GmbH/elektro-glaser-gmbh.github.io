@@ -22,10 +22,10 @@ Langfristig ist auch eine Dokumentationsplattform geplant.
 Die Seite wird automatisch über **GitHub Pages** aus dem `main`-Branch generiert.  
 Die Quelle liegt direkt im Repository-Root.
 
-> Wenn du Änderungen vorschlagen möchtest, 
- 
-  - pushe sie in einen branch und erstelle einen Pull-Request oder
-  - Forke das Repository und erstelle so einen Pull-Request
+Wenn du Änderungen vorschlagen möchtest,
+
+- pushe sie in einen branch und erstelle einen Pull-Request oder
+- Forke das Repository und erstelle so einen Pull-Request
   
 Sobald die Änderungen auf `main` landen, veröffentlicht GitHub die Seite in wenigen Sekunden neu.
 
@@ -36,6 +36,7 @@ Falls du die Seite lokal testen möchtest (Markdown + HTML), kannst du [Jekyll](
 ## ✅ Mitmachen
 
 Pull Requests sind willkommen – insbesondere für:
+
 - Projektbeschreibungen
 - Design/Strukturverbesserungen
 - Rechts-/Fehlerkorrekturen

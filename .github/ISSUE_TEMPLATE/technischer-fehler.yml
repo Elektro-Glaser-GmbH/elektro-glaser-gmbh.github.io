@@ -1,3 +1,4 @@
+---
 name: 🐛 Technischer Fehler
 description: Technisches Problem auf der Website oder im Repository melden
 title: "[Fehler] "
@@ -6,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Du hast ein technisches Problem entdeckt? Danke fürs Melden!  
+        Du hast ein technisches Problem entdeckt? Danke fürs Melden!
         Bitte beschreibe es möglichst präzise, damit wir es gut nachvollziehen können.
 
   - type: input

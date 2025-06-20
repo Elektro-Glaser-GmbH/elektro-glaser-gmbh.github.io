@@ -1,0 +1,39 @@
+---
+name: 🔍 Validate content (Markdown, Links, YAML)
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    name: 🔎 Validate Markdown & Links
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔹 Run markdownlint
+        uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          globs: '**/*.md'
+
+      - name: 🔹 Run link checker (lychee)
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --verbose --no-progress './**/*.md'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🔹 Run yamllint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          config_file: .yamllint.yaml
+
+      # Skip this, german is not well supported
+      # - name: 🔹 Run spell check (cspell)
+      #   uses: streetsidesoftware/cspell-action@v2
+      #   with:
+      #     files: "**/*.{md,yaml,yml}"

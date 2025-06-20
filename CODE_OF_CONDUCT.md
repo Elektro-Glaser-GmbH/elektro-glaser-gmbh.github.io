@@ -50,4 +50,4 @@ Dieser Verhaltenskodex basiert auf dem [Contributor Covenant, Version 2.1](https
 
 ---
 
-*Version: 1.0 – Stand: 2025-06-20*
+Version: 1.0 – Stand: 2025-06-20

@@ -1,0 +1,4 @@
+---
+default: true
+MD013: false  # Line length: deaktiviert, wenn’s nicht stört
+MD033: false  # HTML im Markdown erlauben

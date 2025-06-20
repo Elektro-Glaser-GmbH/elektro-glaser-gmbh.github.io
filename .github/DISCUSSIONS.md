@@ -1,4 +1,4 @@
-## 👋 Willkommen bei den Discussions der Elektro-Glaser GmbH!
+# 👋 Willkommen bei den Discussions der Elektro-Glaser GmbH
 
 Hier ist der richtige Ort für:
 
@@ -9,7 +9,7 @@ Hier ist der richtige Ort für:
 
 ---
 
-### 🧭 Orientierung
+## 🧭 Orientierung
 
 Bevor du eine neue Diskussion startest:
 
@@ -19,7 +19,7 @@ Bevor du eine neue Diskussion startest:
 
 ---
 
-### 🧵 Kategorien-Vorschläge
+## 🧵 Kategorien-Vorschläge
 
 Nutze beim Erstellen einer neuen Diskussion eine passende Kategorie:
 
