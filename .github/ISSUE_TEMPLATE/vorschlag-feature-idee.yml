@@ -1,0 +1,40 @@
+name: 💡 Vorschlag oder Idee
+description: Neue Funktion, Verbesserungsvorschlag oder generelle Idee für die Website einreichen
+title: "[Idee] "
+labels: [idee, enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        👋 Danke für deinen Vorschlag! Bitte beantworte die folgenden Fragen möglichst konkret.
+
+  - type: input
+    attributes:
+      label: Kurztitel
+      description: Was ist die Idee in einem Satz?
+      placeholder: "Projektseite zur PV-Anlage hinzufügen"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Beschreibung
+      description: Was genau schlägst du vor? Wie könnte es umgesetzt werden?
+      placeholder: "Ich würde gerne eine neue Unterseite zu unserem Batteriespeicher ergänzen..."
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Nutzen
+      description: Warum ist das hilfreich? Wer profitiert davon?
+      placeholder: "Hilft Besuchern dabei, unser Energiemanagement besser zu verstehen..."
+    validations:
+      required: false
+
+  - type: checkboxes
+    attributes:
+      label: Beitrag einreichen
+      options:
+        - label: Ich bestätige, dass ich den [Code of Conduct](../CODE_OF_CONDUCT.md) gelesen habe und mich daran halte.
+          required: true
