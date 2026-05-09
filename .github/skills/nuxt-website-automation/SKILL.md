@@ -26,7 +26,7 @@ Referenz-Implementierungen der Skripte liegen unter
 | Target | Befehl | Zweck |
 |---|---|---|
 | `make install` | `npm install` | npm-Abhängigkeiten installieren |
-| `make dev` | `npm run dev` | Nuxt-Dev-Server (http://localhost:3000) |
+| `make dev` | `npm run dev` | Nuxt-Dev-Server (http://localhost:3000) <!-- markdownlint-disable-line MD034 --> |
 | `make build` | `npm run build` | SSR-Build |
 | `make generate` | `npm run generate` | Statische Seite für GitHub Pages |
 | `make preview` | `npm run preview` | Generierten Output lokal betrachten |
@@ -83,7 +83,7 @@ PEP-723-Inline-Skript (kein venv nötig, direkt mit `uv run --script`).
 
 **Optionen:**
 
-```
+```text
 --no-external        Externe Checks überspringen
 --workers N          Parallele HTTP-Worker (Standard: 10)
 --timeout N          HTTP-Timeout in Sekunden (Standard: 10)
@@ -107,6 +107,7 @@ Wird von **pre-commit** aufgerufen (Hook `check-blog-images`).
 Überprüft, ob jedes in Markdown referenzierte Bild unter `public/` existiert.
 
 **Prüft:**
+
 - Frontmatter `image: /images/…`
 - Inline-Markdown `![alt](/images/…)`
 
@@ -115,6 +116,7 @@ Wird von **pre-commit** aufgerufen (Hook `check-blog-images`).
 **Ausgabe:** `<datei>:<zeilennummer>  →  /images/pfad`
 
 **pre-commit-Konfiguration (`.pre-commit-config.yaml`):**
+
 ```yaml
 - id: check-blog-images
   name: Check blog post images exist in public/
@@ -135,11 +137,13 @@ Liest eine Log-Datei von `check-links.py` (mit `--log`) und sucht für jede
 fehlende `[FAIL]`-URL nach der Original-Datei im lokalen WordPress-Import.
 
 **Workflow:**
+
 1. `make check-links-log LOG=/tmp/links.log`
 2. `make restore-assets` (Dry-Run, zeigt was passieren würde)
 3. `make restore-assets-do` (kopiert Dateien + rewrites Markdown-Quellen)
 
 **Konfigurierbare Parameter (oben in der Datei):**
+
 ```python
 # Hosts, deren fehlende Assets lokal gesucht werden sollen
 SITE_HOSTS = {"yourdomain.de", "blog.yourdomain.de"}
@@ -152,7 +156,8 @@ SEARCH_ROOTS = [
 ```
 
 **CLI-Optionen:**
-```
+
+```text
 --log FILE    Pfad zur check-links Logdatei (Standard: /tmp/links.log)
 --dry-run     Nur Ausgabe, keine Dateioperationen
 ```

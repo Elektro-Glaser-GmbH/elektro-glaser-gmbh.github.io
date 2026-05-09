@@ -9,8 +9,10 @@ author: "Daniel Glaser"
 **Hallo und herzlich willkommen** auf dem Blog der Elektro-Glaser GmbH!  
 Schön, dass du den Weg zu uns gefunden hast.
 
-Wir sind ein inhabergeführter Elektrobetrieb aus Erlangen – mit Leidenschaft für **zukunftsfähige Technik**, **klare Kommunikation** und **nachhaltige Lösungen**.  
-Ob **erneuerbare Energien**, **Smart Home**, **Wallbox** oder die gute alte Steckdose: Wir stehen mit beiden Beinen in der Praxis – und mit dem Kopf bereits in der nächsten Generation Technik.
+Wir sind ein inhabergeführter Elektrobetrieb aus Erlangen – mit Leidenschaft für **zukunftsfähige Technik**,
+**klare Kommunikation** und **nachhaltige Lösungen**.  
+Ob **erneuerbare Energien**, **Smart Home**, **Wallbox** oder die gute alte Steckdose: Wir stehen
+mit beiden Beinen in der Praxis – und mit dem Kopf bereits in der nächsten Generation Technik.
 
 ---
 
@@ -33,14 +35,17 @@ Weil sich **unsere Branche verändert.**
 Weil die Energiewende nicht nur ein politisches Ziel, sondern **unser tägliches Handwerk** ist.  
 Und weil es Zeit wird, mit Mythen, Halbwissen und veralteten Denkweisen aufzuräumen.
 
-Wir wollen **aufklären statt überreden**, **verstehen statt nur verkaufen**, und dir zeigen, warum **eine gute Elektroinstallation mehr ist als Kabel und Klemmen.**
+Wir wollen **aufklären statt überreden**, **verstehen statt nur verkaufen**, und dir zeigen, warum
+**eine gute Elektroinstallation mehr ist als Kabel und Klemmen.**
 
 ---
 
 ### Wer steckt dahinter?
 
-Wir sind kein Konzern, sondern ein echtes Team kleiner Unternehmer aus **Technikbegeisterten**, **Machern**, **Vordenkern**.  
-Geführt wird Elektro-Glaser von Daniel Glaser, Elektroingenieur und Familienvater mit einer Schwäche für **Embedded-Systeme und ehrliche Handwerkskunst.**
+Wir sind kein Konzern, sondern ein echtes Team kleiner Unternehmer aus **Technikbegeisterten**,
+**Machern**, **Vordenkern**.  
+Geführt wird Elektro-Glaser von Daniel Glaser, Elektroingenieur und Familienvater mit einer
+Schwäche für **Embedded-Systeme und ehrliche Handwerkskunst.**
 
 ---
 

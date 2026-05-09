@@ -27,7 +27,7 @@ Der Dev-Server läuft unter `http://localhost:3000`.
 
 Blog-Beiträge werden als Markdown-Dateien in `content/blog/` gepflegt:
 
-```
+```text
 content/blog/mein-post.md
 ```
 
@@ -53,7 +53,8 @@ Die Seite wird über GitHub Actions als statische Site generiert und auf GitHub 
 npm run generate   # Erzeugt .output/public/
 ```
 
-Jeder Push auf `main` löst automatisch einen Build und Deployment aus. Dabei wird die Versionsnummer per [paulhatch/semantic-version](https://github.com/paulhatch/semantic-version) ermittelt und als Git-Tag gesetzt:
+Jeder Push auf `main` löst automatisch einen Build und Deployment aus. Dabei wird die Versionsnummer per
+[paulhatch/semantic-version](https://github.com/paulhatch/semantic-version) ermittelt und als Git-Tag gesetzt:
 
 - Commit-Nachricht enthält `(MAJOR)` → Major-Bump
 - Commit-Nachricht enthält `(MINOR)` → Minor-Bump
