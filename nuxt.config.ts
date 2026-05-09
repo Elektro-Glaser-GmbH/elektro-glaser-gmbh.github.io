@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-04-26',
+  compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
   modules: ['@nuxt/content', 'nuxt-gtag'],
@@ -39,10 +39,6 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.scss'],
-
-  content: {
-    highlight: false,
-  },
 
   runtimeConfig: {
     public: {
