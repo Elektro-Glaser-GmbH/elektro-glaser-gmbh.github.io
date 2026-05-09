@@ -6,10 +6,17 @@ export default defineContentConfig({
       type: 'page',
       source: 'blog/**/*.md',
       schema: z.object({
-        date: z.string().optional(),
-        description: z.string().optional(),
+        date: z.string(),
+        description: z.string(),
         author: z.string().optional(),
-        categories: z.array(z.string()).optional(),
+        categories: z.array(z.string()).default([]),
+      }),
+    }),
+    pages: defineCollection({
+      type: 'page',
+      source: '*.md',
+      schema: z.object({
+        description: z.string().optional(),
       }),
     }),
   },
