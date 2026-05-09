@@ -13,9 +13,6 @@
           <NuxtLink to="/contact" class="nav-link" @click="menuOpen = false">Kontakt</NuxtLink>
         </nav>
         <div class="navbar-actions">
-          <a href="mailto:info@e-glaser.de" class="nav-cta" aria-label="E-Mail senden">
-            Kontakt
-          </a>
           <button class="navbar-burger" :aria-expanded="menuOpen" @click="menuOpen = !menuOpen">
             <span></span><span></span><span></span>
           </button>
