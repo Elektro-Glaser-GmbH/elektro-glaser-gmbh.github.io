@@ -15,7 +15,7 @@ useSeoMeta({
     <p>Bei dringenden Anliegen erreichen Sie uns direkt:</p>
     <p>
       📞 <a href="tel:+4991319116733">+49 9131 911 6733</a> · ✉️
-      <a href="mailto:info@e-glaser.de">info@e-glaser.de</a>
+      <ObfuscatedEmail />
     </p>
     <NuxtLink to="/" class="btn-hero" style="margin-top:1.5rem;display:inline-block;">
       Zurück zur Startseite

@@ -29,7 +29,7 @@ const form = reactive({
       </div>
       <div class="contact-item">
         <div class="contact-item-label">✉️ E-Mail</div>
-        <div class="contact-item-value"><a href="mailto:info@e-glaser.de">info@e-glaser.de</a></div>
+        <div class="contact-item-value"><ObfuscatedEmail /></div>
       </div>
       <div class="contact-item">
         <div class="contact-item-label">📍 Adresse</div>

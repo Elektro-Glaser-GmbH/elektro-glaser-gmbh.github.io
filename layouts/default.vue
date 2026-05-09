@@ -41,7 +41,7 @@
           <div class="footer-col">
             <span class="footer-col-title">Kontakt</span>
             <a href="tel:+4991319116733">+49 9131 911 6733</a>
-            <a href="mailto:info@e-glaser.de">info@e-glaser.de</a>
+            <ObfuscatedEmail />
             <span>Birkenweg 12, 91058 Erlangen</span>
           </div>
         </div>

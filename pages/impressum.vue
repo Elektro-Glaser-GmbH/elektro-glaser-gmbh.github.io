@@ -16,7 +16,7 @@ useSeoMeta({
     </p>
     <p>
       <strong>Telefon:</strong> +49 9131 911 6733<br />
-      <strong>E-Mail:</strong> info@e-glaser.de
+      <strong>E-Mail:</strong> <ObfuscatedEmail :as-link="false" />
     </p>
     <p><strong>Geschäftsführender Gesellschafter:</strong> Daniel Glaser</p>
     <p>

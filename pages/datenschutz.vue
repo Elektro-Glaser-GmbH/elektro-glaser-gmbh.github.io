@@ -19,7 +19,7 @@ useSeoMeta({
       91058 Erlangen<br />
       Deutschland<br />
       Telefon: +49 9131 911 6733<br />
-      E-Mail: <a href="mailto:info@e-glaser.de">info@e-glaser.de</a><br />
+      E-Mail: <ObfuscatedEmail /><br />
       Website: <a href="https://www.e-glaser.de" target="_blank" rel="noopener">https://www.e-glaser.de</a>
     </p>
     <hr />
