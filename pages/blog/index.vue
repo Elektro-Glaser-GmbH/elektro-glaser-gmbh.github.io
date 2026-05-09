@@ -4,8 +4,8 @@ useSeoMeta({
   description: 'Tipps, Einblicke und Neuigkeiten rund um Erneuerbare Energien, Smart Home und Elektrotechnik von Elektro-Glaser.',
 })
 
-const { data: posts } = await useAsyncData('blog-posts-v2', async () => {
-  const items = await queryContent('blog').find()
+const { data: posts } = await useAsyncData('blog-posts', async () => {
+  const items = await queryCollection('blog').all()
   return items.sort((a: any, b: any) =>
     String(b.date).localeCompare(String(a.date))
   )
@@ -20,7 +20,7 @@ const { data: posts } = await useAsyncData('blog-posts-v2', async () => {
     <hr />
 
     <div class="blog-list">
-      <article v-for="post in posts" :key="post._path" class="blog-card">
+      <article v-for="post in posts" :key="post.path" class="blog-card">
         <div class="blog-meta">
           <time :datetime="post.date">{{ new Date(post.date).toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' }) }}</time>
           <span v-if="post.categories" class="blog-categories">
@@ -28,10 +28,10 @@ const { data: posts } = await useAsyncData('blog-posts-v2', async () => {
           </span>
         </div>
         <h2>
-          <NuxtLink :to="post._path">{{ post.title }}</NuxtLink>
+          <NuxtLink :to="post.path">{{ post.title }}</NuxtLink>
         </h2>
         <p>{{ post.description }}</p>
-        <NuxtLink :to="post._path" class="btn btn-outline">Weiterlesen →</NuxtLink>
+        <NuxtLink :to="post.path" class="btn btn-outline">Weiterlesen →</NuxtLink>
       </article>
     </div>
   </div>
