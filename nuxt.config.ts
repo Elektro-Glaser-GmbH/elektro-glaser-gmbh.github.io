@@ -6,9 +6,18 @@ export default defineNuxtConfig({
   modules: ['@nuxt/content', 'nuxt-gtag'],
 
   gtag: {
-    // Script wird erst nach expliziter Zustimmung geladen (DSGVO)
-    initMode: 'manual',
     id: process.env.GOOGLE_ANALYTICS_MEAS_ID || 'G-XXXXXXXXXX',
+    // Consent Mode v2: Script sofort laden, Consent standardmäßig verweigert (DSGVO).
+    // Daten werden erst gesendet, nachdem der Nutzer im ConsentBanner zugestimmt hat.
+    initCommands: [
+      ['consent', 'default', {
+        analytics_storage:  'denied',
+        ad_storage:         'denied',
+        ad_user_data:       'denied',
+        ad_personalization: 'denied',
+        wait_for_update:    500,
+      }],
+    ],
   },
 
   app: {

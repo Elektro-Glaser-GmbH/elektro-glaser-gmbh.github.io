@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { gtag } = useGtag()
+
 // Consent-Status persistent im Cookie speichern (1 Jahr)
 const consent = useCookie<boolean | null>('eg-cookie-consent', {
   default: () => null,
@@ -6,20 +8,29 @@ const consent = useCookie<boolean | null>('eg-cookie-consent', {
   sameSite: 'lax',
 })
 
-const { initialize } = useGtag()
+const showBanner = computed(() => consent.value === null)
 
-// Bei erneutem Seitenaufruf: Zustimmung wiederherstellen
+// Bei erneutem Seitenaufruf: gespeicherten Consent wiederherstellen
 onMounted(() => {
   if (consent.value === true) {
-    initialize()
+    gtag('consent', 'update', {
+      analytics_storage:  'granted',
+      ad_storage:         'granted',
+      ad_user_data:       'granted',
+      ad_personalization: 'granted',
+    })
   }
 })
 
-const showBanner = computed(() => consent.value === null)
-
 function acceptAll() {
   consent.value = true
-  initialize()
+  // Consent Mode v2: Datenerfassung freigeben
+  gtag('consent', 'update', {
+    analytics_storage:  'granted',
+    ad_storage:         'granted',
+    ad_user_data:       'granted',
+    ad_personalization: 'granted',
+  })
 }
 
 function denyAll() {
