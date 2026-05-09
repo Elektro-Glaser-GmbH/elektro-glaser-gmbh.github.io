@@ -38,8 +38,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       siteUrl: 'https://www.e-glaser.de',
-      // E-Mail base64-kodiert – wird nur client-seitig dekodiert (Crawler-Schutz)
+      // E-Mail und Telefon base64-kodiert – wird nur client-seitig dekodiert (Crawler-Schutz)
       contactEmailEncoded: Buffer.from(process.env.CONTACT_EMAIL ?? '').toString('base64'),
+      contactPhoneEncoded: Buffer.from(process.env.CONTACT_PHONE ?? '').toString('base64'),
     },
   },
 })

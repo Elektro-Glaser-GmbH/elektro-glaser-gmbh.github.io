@@ -18,7 +18,7 @@ useSeoMeta({
       Birkenweg 12<br />
       91058 Erlangen<br />
       Deutschland<br />
-      Telefon: +49 9131 911 6733<br />
+      Telefon: <ObfuscatedPhone :as-link="false" /><br />
       E-Mail: <ObfuscatedEmail /><br />
       Website: <a href="https://www.e-glaser.de" target="_blank" rel="noopener">https://www.e-glaser.de</a>
     </p>

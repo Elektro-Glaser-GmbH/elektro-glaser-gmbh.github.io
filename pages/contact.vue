@@ -25,7 +25,7 @@ const form = reactive({
     <div class="contact-box">
       <div class="contact-item">
         <div class="contact-item-label">📞 Telefon</div>
-        <div class="contact-item-value"><a href="tel:+4991319116733">+49 9131 911 6733</a></div>
+        <div class="contact-item-value"><ObfuscatedPhone /></div>
       </div>
       <div class="contact-item">
         <div class="contact-item-label">✉️ E-Mail</div>

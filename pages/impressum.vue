@@ -15,7 +15,7 @@ useSeoMeta({
       91058 Erlangen
     </p>
     <p>
-      <strong>Telefon:</strong> +49 9131 911 6733<br />
+      <strong>Telefon:</strong> <ObfuscatedPhone :as-link="false" /><br />
       <strong>E-Mail:</strong> <ObfuscatedEmail :as-link="false" />
     </p>
     <p><strong>Geschäftsführender Gesellschafter:</strong> Daniel Glaser</p>
