@@ -55,7 +55,7 @@ jobs:
 
       - name: Generate static site
         env:
-          GOOGLE_ANALYTICS_MEAS_ID: ${{ secrets.GOOGLE_ANALYTICS_MEAS_ID }}
+          GOOGLE_ANALYTICS_MEAS_ID: ${{ vars.GOOGLE_ANALYTICS_MEAS_ID }}
           CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
           CONTACT_PHONE: ${{ secrets.CONTACT_PHONE }}
         run: npm run generate
