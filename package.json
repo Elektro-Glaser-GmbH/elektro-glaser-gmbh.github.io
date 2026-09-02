@@ -18,6 +18,6 @@
   },
   "dependencies": {
     "better-sqlite3": "^12.9.0",
-    "nuxt-gtag": "^4.1.0"
+    "nuxt-gtag": "^5.0.0"
   }
 }
