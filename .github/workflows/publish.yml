@@ -30,7 +30,7 @@ jobs:
 
       - name: Determine version (patch bump on every commit)
         id: version
-        uses: paulhatch/semantic-version@v6.0.2
+        uses: paulhatch/semantic-version@v6.0.4
         with:
           tag_prefix: "v"
           major_pattern: "(MAJOR)"
