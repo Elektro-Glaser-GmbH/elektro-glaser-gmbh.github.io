@@ -52,7 +52,7 @@ Konstanten oben in `pages/zertifikat.vue`:
 
 | Konstante | Quelle | Zu tun |
 |---|---|---|
-| `OPENPGP_KEY_ID`, `OPENPGP_UID` | manuell | gesetzt; bei Schlüsseltausch anpassen, siehe [openpgp.md](openpgp.md) |
+| `OPENPGP_KEY_ID`, `OPENPGP_OWNER`, `OPENPGP_EMAILS_B64` | manuell | gesetzt; bei Änderungen am Schlüssel anpassen |
 | `SHA256_PLACEHOLDER` | Fallback | nichts – wird angezeigt, solange `index.json` fehlt |
 
 Nicht ersetzte Platzhalter (Werte, die mit `[` beginnen) werden mit der CSS-Klasse `.placeholder` rot und

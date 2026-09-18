@@ -877,6 +877,14 @@ a.cert-way {
 
 .cert-nowrap { white-space: nowrap; }
 .cert-btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.cert-email-label { margin-bottom: 0.4rem; }
+.cert-email-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  li { font-family: $mono; font-size: 0.875rem; padding-block: 0.15rem; }
+  li::before { content: '✉ '; color: $muted; }
+}
 .cert-muted  { color: $muted; font-size: 0.8rem; }
 
 // ── Responsive ────────────────────────────────────────────────────────────────

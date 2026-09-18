@@ -15,7 +15,16 @@ useSeoMeta({
 // ─────────────────────────────────────────────────────────────────────────────
 const SHA256_PLACEHOLDER = '[HIER_SHA256_FINGERPRINT_EINTRAGEN]'
 const OPENPGP_KEY_ID = '214AF7FD2FC8A6AF3E543C0088B8848CE9C19294'
-const OPENPGP_UID = 'Daniel Gerold Glaser <daniel@e-glaser.de>'
+const OPENPGP_OWNER = 'Daniel Gerold Glaser'
+// Alle auf keys.openpgp.org bestätigten User-IDs des Schlüssels. base64-kodiert wie in
+// ObfuscatedEmail.vue: Im vorgerenderten HTML steht kein @, dekodiert wird erst im Browser.
+const OPENPGP_EMAILS_B64 = [
+  'ZGFuaWVsQGUtZ2xhc2VyLmRl', // e-glaser.de
+  'ZGFuaWVsLmdsYXNlckBlbmVyZ2lld2VuZGUtZXJobGFuZ2VuLmRl', // energiewende-erhlangen.de
+  'ZGFuaWVsLmdsYXNlckBiaXp6bWFyay5pbw==', // bizzmark.io
+  'ZGFuaWVsLmdsYXNlckBjaGFpbnRyb25pY3MuY29t', // chaintronics.com
+]
+const decodeEmail = (b64: string) => { try { return atob(b64) } catch { return '' } }
 
 const DNS_NAME = '_signatur.e-glaser.de'
 const DNS_HISTORY_YEARS = 10
@@ -221,13 +230,26 @@ async function copy(key: string, text: string) {
         Zusätzlich verwenden wir den OpenPGP-Schlüssel unseres Geschäftsführers Daniel Glaser. Er ist auf dem
         unabhängigen, öffentlichen Schlüsselverzeichnis
         <a href="https://keys.openpgp.org" target="_blank" rel="noopener">keys.openpgp.org</a> hinterlegt und dort per
-        E-Mail-Bestätigung für <strong>daniel@e-glaser.de</strong> verifiziert. Mit diesem Schlüssel signieren wir unsere
+        E-Mail-Bestätigung für alle unten aufgeführten Adressen verifiziert. Mit diesem Schlüssel signieren wir unsere
         Zertifikatsdatei – so lässt sich unabhängig von dieser Webseite belegen, dass die Datei von uns stammt.
       </p>
       <p>
         <strong>Fingerprint:</strong>
         <code class="cert-inline" :class="{ placeholder: isPlaceholder(OPENPGP_KEY_ID) }">{{ pgpFingerprintGrouped }}</code><br />
-        <strong>Inhaber:</strong> {{ OPENPGP_UID }}
+        <strong>Inhaber:</strong> {{ OPENPGP_OWNER }}
+      </p>
+      <p class="cert-email-label"><strong>E-Mail-Adressen dieses Schlüssels</strong> (auf keys.openpgp.org bestätigt):</p>
+      <ClientOnly>
+        <ul class="cert-email-list">
+          <li v-for="b64 in OPENPGP_EMAILS_B64" :key="b64">
+            <a :href="`mailto:${decodeEmail(b64)}`">{{ decodeEmail(b64) }}</a>
+          </li>
+        </ul>
+        <template #fallback><p class="cert-muted">E-Mail-Adressen werden geladen …</p></template>
+      </ClientOnly>
+      <p class="hint">
+        Der Download auf dieser Seite enthält nur die Firmenadresse. Wer den Schlüssel vom Keyserver abruft, erhält alle
+        Adressen – der Fingerprint ist in beiden Fällen identisch.
       </p>
       <p class="cert-btn-row">
         <a :href="`https://keys.openpgp.org/search?q=${encodeURIComponent(OPENPGP_KEY_ID)}`" target="_blank" rel="noopener" class="btn-outline">

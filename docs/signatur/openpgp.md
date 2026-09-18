@@ -28,7 +28,23 @@ gpg --armor --export-options export-minimal --export 214AF7FD2FC8A6AF3E543C0088B
 ```
 
 Den Export nach jeder Änderung am Schlüssel (Verlängerung, neue User-ID) wiederholen und committen. In
-`pages/zertifikat.vue` stehen `OPENPGP_KEY_ID` (Fingerprint ohne Leerzeichen) und `OPENPGP_UID`.
+`pages/zertifikat.vue` stehen `OPENPGP_KEY_ID` (Fingerprint ohne Leerzeichen), `OPENPGP_OWNER` und
+`OPENPGP_EMAILS_B64`.
+
+Die Seite listet **alle** auf keys.openpgp.org bestätigten E-Mail-Adressen des Schlüssels. Wie bei
+`components/ObfuscatedEmail.vue` stehen sie base64-kodiert im Quelltext und werden erst im Browser dekodiert
+(`<ClientOnly>`), damit im vorgerenderten HTML kein `@` für Crawler steht. Neue Adresse ergänzen:
+
+```bash
+node -e 'console.log(Buffer.from("name@example.de").toString("base64"))'
+```
+
+Aktuelle User-IDs auf dem Keyserver anzeigen:
+
+```bash
+curl -s https://keys.openpgp.org/vks/v1/by-fingerprint/214AF7FD2FC8A6AF3E543C0088B8848CE9C19294 \
+  | gpg --show-keys --with-colons | awk -F: '$1=="uid"{print $10}'
+```
 
 ### Schlüssel ersetzen
 
