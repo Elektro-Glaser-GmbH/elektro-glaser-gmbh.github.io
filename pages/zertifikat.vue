@@ -7,18 +7,20 @@ useSeoMeta({
 })
 
 // ─────────────────────────────────────────────────────────────────────────────
-// PLATZHALTER – manuell ersetzen:
-//   OPENPGP_KEY_ID: Fingerprint/Key-ID des OpenPGP-Schlüssels auf keys.openpgp.org
-// Fingerprint, Gültigkeit und Archiv kommen automatisch aus
+// OPENPGP_KEY_ID: vollständiger Fingerprint des OpenPGP-Schlüssels auf keys.openpgp.org
+// (öffentlicher Teil liegt als public/openpgp_schluessel.asc bei).
+// Fingerprint, Gültigkeit und Archiv des X.509-Zertifikats kommen automatisch aus
 // public/zertifikate/index.json (gepflegt von scripts/generate-signing-cert.sh).
 // Solange dort noch kein Zertifikat steht, erscheint der SHA256-Platzhalter.
 // ─────────────────────────────────────────────────────────────────────────────
 const SHA256_PLACEHOLDER = '[HIER_SHA256_FINGERPRINT_EINTRAGEN]'
-const OPENPGP_KEY_ID = '[HIER_OPENPGP_KEY_ID_EINTRAGEN]'
+const OPENPGP_KEY_ID = '214AF7FD2FC8A6AF3E543C0088B8848CE9C19294'
+const OPENPGP_UID = 'Daniel Gerold Glaser <daniel@e-glaser.de>'
 
 const DNS_NAME = '_signatur.e-glaser.de'
 const DNS_HISTORY_YEARS = 10
 const CERT_FILE = 'oeffentliches_zertifikat.pem'
+const PGP_KEY_FILE = 'openpgp_schluessel.asc'
 const REPO_URL = 'https://github.com/Elektro-Glaser-GmbH/elektro-glaser-gmbh.github.io'
 
 interface CertEntry {
@@ -59,6 +61,13 @@ const certGlob = import.meta.glob('/public/oeffentliches_zertifikat.pem', { quer
 const ascGlob = import.meta.glob('/public/oeffentliches_zertifikat.pem.asc', { query: '?raw', import: 'default', eager: true })
 const certPem = (Object.values(certGlob)[0] as string | undefined)?.trim() ?? ''
 const hasAsc = Object.keys(ascGlob).length > 0
+const pgpGlob = import.meta.glob('/public/openpgp_schluessel.asc', { query: '?raw', import: 'default', eager: true })
+const pgpKey = (Object.values(pgpGlob)[0] as string | undefined)?.trim() ?? ''
+
+// Fingerprint in 4er-Gruppen – so zeigen ihn auch gpg und Kleopatra an
+const pgpFingerprintGrouped = isPlaceholder(OPENPGP_KEY_ID)
+  ? OPENPGP_KEY_ID
+  : OPENPGP_KEY_ID.replace(/(.{4})/g, '$1 ').trim().replace(/^((?:\S+ ){4}\S+) /, '$1  ')
 
 const copied = ref<string | null>(null)
 async function copy(key: string, text: string) {
@@ -209,25 +218,37 @@ async function copy(key: string, text: string) {
         <h2>2. Prüfung über den OpenPGP-Keyserver</h2>
       </div>
       <p>
-        Zusätzlich besitzen wir einen OpenPGP-Schlüssel, der auf dem unabhängigen, öffentlichen Schlüsselverzeichnis
+        Zusätzlich verwenden wir den OpenPGP-Schlüssel unseres Geschäftsführers Daniel Glaser. Er ist auf dem
+        unabhängigen, öffentlichen Schlüsselverzeichnis
         <a href="https://keys.openpgp.org" target="_blank" rel="noopener">keys.openpgp.org</a> hinterlegt und dort per
-        E-Mail-Bestätigung verifiziert ist. Mit diesem Schlüssel haben wir unsere Zertifikatsdatei signiert – so lässt sich
-        unabhängig von dieser Webseite belegen, dass die Datei von uns stammt.
+        E-Mail-Bestätigung für <strong>daniel@e-glaser.de</strong> verifiziert. Mit diesem Schlüssel signieren wir unsere
+        Zertifikatsdatei – so lässt sich unabhängig von dieser Webseite belegen, dass die Datei von uns stammt.
       </p>
       <p>
-        <strong>Key-ID:</strong>
-        <code class="cert-inline" :class="{ placeholder: isPlaceholder(OPENPGP_KEY_ID) }">{{ OPENPGP_KEY_ID }}</code>
+        <strong>Fingerprint:</strong>
+        <code class="cert-inline" :class="{ placeholder: isPlaceholder(OPENPGP_KEY_ID) }">{{ pgpFingerprintGrouped }}</code><br />
+        <strong>Inhaber:</strong> {{ OPENPGP_UID }}
       </p>
-      <p>
+      <p class="cert-btn-row">
         <a :href="`https://keys.openpgp.org/search?q=${encodeURIComponent(OPENPGP_KEY_ID)}`" target="_blank" rel="noopener" class="btn-outline">
           Schlüssel auf keys.openpgp.org ansehen ↗
         </a>
+        <a v-if="pgpKey" :href="`/${PGP_KEY_FILE}`" :download="PGP_KEY_FILE" class="btn-outline">⬇ Öffentlichen Schlüssel herunterladen</a>
+        <a v-if="hasAsc" :href="`/${CERT_FILE}.asc`" download class="btn-outline">⬇ Signatur der Zertifikatsdatei (.asc)</a>
       </p>
       <p><strong>Für Fachleute – Schlüssel abrufen und Signatur der Zertifikatsdatei prüfen:</strong></p>
       <div class="cert-code">
         <pre><code>gpg --keyserver hkps://keys.openpgp.org --recv-keys <span :class="{ placeholder: isPlaceholder(OPENPGP_KEY_ID) }">{{ OPENPGP_KEY_ID }}</span>
+# alternativ die Datei von dieser Seite: gpg --import {{ PGP_KEY_FILE }}
 gpg --verify {{ CERT_FILE }}.asc {{ CERT_FILE }}</code></pre>
       </div>
+      <template v-if="pgpKey">
+        <p>Öffentlicher OpenPGP-Schlüssel:</p>
+        <div class="cert-code">
+          <pre><code>{{ pgpKey }}</code></pre>
+          <button type="button" class="cert-copy" @click="copy('pgp', pgpKey)">{{ copied === 'pgp' ? '✓' : 'Kopieren' }}</button>
+        </div>
+      </template>
     </section>
 
     <!-- 3. Git -->

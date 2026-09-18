@@ -48,7 +48,8 @@ scripts/
 └── signing-cert-manifest.mjs       Pflegt public/zertifikate/index.json, gibt DNS-Einträge aus
 public/
 ├── oeffentliches_zertifikat.pem    Immer das aktuelle Zertifikat (Download auf der Seite)
-├── oeffentliches_zertifikat.pem.asc  optional: OpenPGP-Signatur der PEM-Datei
+├── oeffentliches_zertifikat.pem.asc  OpenPGP-Signatur der PEM-Datei
+├── openpgp_schluessel.asc          Öffentlicher OpenPGP-Schlüssel (nur Firmen-User-ID)
 └── zertifikate/
     ├── elektro-glaser-signatur-<JAHR>.pem   Archiv, eine Datei pro Jahr
     └── index.json                           Manifest (Jahr, Gültigkeit, Fingerprint, Seriennummer)

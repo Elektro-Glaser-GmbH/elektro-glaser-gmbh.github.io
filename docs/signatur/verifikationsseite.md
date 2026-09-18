@@ -32,7 +32,8 @@ scripts/generate-signing-cert.sh
         ▼
 public/zertifikate/index.json ──┐
 public/oeffentliches_zertifikat.pem ──┤  import.meta.glob(…, { query: '?raw', eager: true })
-public/oeffentliches_zertifikat.pem.asc ──┘  (nur Existenzprüfung)
+public/oeffentliches_zertifikat.pem.asc ──┤  (nur Existenzprüfung)
+public/openpgp_schluessel.asc ──┘
         │
         ▼
 pages/zertifikat.vue  ──nuxt generate──▶  .output/public/zertifikat/index.html
@@ -51,7 +52,7 @@ Konstanten oben in `pages/zertifikat.vue`:
 
 | Konstante | Quelle | Zu tun |
 |---|---|---|
-| `OPENPGP_KEY_ID` | manuell | durch den 40-stelligen PGP-Fingerprint ersetzen, siehe [openpgp.md](openpgp.md) |
+| `OPENPGP_KEY_ID`, `OPENPGP_UID` | manuell | gesetzt; bei Schlüsseltausch anpassen, siehe [openpgp.md](openpgp.md) |
 | `SHA256_PLACEHOLDER` | Fallback | nichts – wird angezeigt, solange `index.json` fehlt |
 
 Nicht ersetzte Platzhalter (Werte, die mit `[` beginnen) werden mit der CSS-Klasse `.placeholder` rot und
