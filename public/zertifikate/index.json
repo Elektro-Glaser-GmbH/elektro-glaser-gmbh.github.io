@@ -1,0 +1,13 @@
+{
+  "certificates": [
+    {
+      "year": 2026,
+      "file": "zertifikate/elektro-glaser-signatur-2026.pem",
+      "subject": "C=DE, ST=Bayern, L=Erlangen, O=Elektro-Glaser GmbH, CN=Elektro-Glaser GmbH - Dokumentensignatur 2026",
+      "serial": "1A33B475FF278875F5812A5611E10C3826FA54A4",
+      "notBefore": "2026-09-18T12:36:07.000Z",
+      "notAfter": "2026-12-31T22:59:59.000Z",
+      "sha256": "5A:27:ED:E8:B9:83:5B:24:F4:D7:B9:32:63:9C:F9:73:3B:95:D5:E6:1A:3C:80:AD:10:77:45:98:FA:47:A7:0A"
+    }
+  ]
+}
