@@ -37,6 +37,7 @@
             <NuxtLink to="/about">Über uns</NuxtLink>
             <NuxtLink to="/services">Dienstleistungen</NuxtLink>
             <NuxtLink to="/blog">Blog</NuxtLink>
+            <NuxtLink to="/zertifikat">Signaturprüfung</NuxtLink>
           </div>
           <div class="footer-col">
             <span class="footer-col-title">Kontakt</span>
@@ -51,6 +52,7 @@
         <nav class="footer-legal">
           <NuxtLink to="/impressum">Impressum</NuxtLink>
           <NuxtLink to="/datenschutz">Datenschutz</NuxtLink>
+          <NuxtLink to="/zertifikat">Signaturprüfung</NuxtLink>
         </nav>
       </div>
     </footer>

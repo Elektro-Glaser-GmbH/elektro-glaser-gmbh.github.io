@@ -24,6 +24,11 @@ useSeoMeta({
       <strong>Steuernummer:</strong> 216/125/50295<br />
       <strong>USt-ID:</strong> DE455396470
     </p>
+    <p>
+      <strong>Digitale Signatur:</strong> Unsere Prüfprotokolle sind digital signiert (PAdES). Wie Sie die Echtheit
+      prüfen können, erfahren Sie auf unserer Seite zur
+      <NuxtLink to="/zertifikat">Signaturprüfung</NuxtLink>.
+    </p>
     <hr />
     <h2>Haftungsausschluss</h2>
     <h3>Haftung für Inhalte</h3>
