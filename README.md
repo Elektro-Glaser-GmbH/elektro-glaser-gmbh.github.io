@@ -1,18 +1,19 @@
 # Elektro-Glaser Website
 
-Offizielle Website der [Elektro-Glaser GmbH](https://www.e-glaser.de) – gebaut mit [Nuxt 3](https://nuxt.com) und [Nuxt Content](https://content.nuxt.com).
+Offizielle Website der [Elektro-Glaser GmbH](https://www.e-glaser.de) – gebaut mit [Nuxt 4](https://nuxt.com) und [Nuxt Content](https://content.nuxt.com).
 
-[![Build & Deploy](https://github.com/Elektro-Glaser-GmbH/e-glaser.de/actions/workflows/publish.yml/badge.svg)](https://github.com/Elektro-Glaser-GmbH/e-glaser.de/actions/workflows/publish.yml)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Elektro-Glaser-GmbH/e-glaser.de)
+[![Build & Deploy](https://github.com/Elektro-Glaser-GmbH/elektro-glaser-gmbh.github.io/actions/workflows/publish.yml/badge.svg)](https://github.com/Elektro-Glaser-GmbH/elektro-glaser-gmbh.github.io/actions/workflows/publish.yml)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Elektro-Glaser-GmbH/elektro-glaser-gmbh.github.io)
 
 ## Tech-Stack
 
 | Technologie | Version |
 |---|---|
-| Nuxt | 3.x |
-| @nuxt/content | 2.x |
+| Nuxt | 4.x |
+| Vue | 3.x |
+| @nuxt/content | 3.x |
 | Sass | 1.x |
-| Node.js (CI) | 22 |
+| Node.js (CI) | 24 |
 
 ## Entwicklung
 
