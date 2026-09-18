@@ -60,6 +60,11 @@ Jeder Push auf `main` löst automatisch einen Build und Deployment aus. Dabei wi
 - Commit-Nachricht enthält `(MINOR)` → Minor-Bump
 - Alle anderen Commits → Patch-Bump
 
+## Dokumentation
+
+Weiterführende technische Dokumentation liegt in [`docs/`](docs/README.md), u. a. zur
+[digitalen Signatur von Prüfprotokollen](docs/signatur/README.md) und der Seite `/zertifikat`.
+
 ## Secrets
 
 | Secret | Beschreibung |
