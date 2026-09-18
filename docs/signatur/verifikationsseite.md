@@ -17,8 +17,9 @@ Live: [e-glaser.de/zertifikat](https://e-glaser.de/zertifikat).
 | Öffentliches Zertifikat | `#zertifikat` | PEM-Text mit Kopier-Button, `openssl`-Befehl |
 | Zertifikatsarchiv | `#archiv` | Tabelle aller Jahre mit Gültigkeit, Fingerprint, DNS-Name, Download |
 
-Eingebunden ist die Seite im Footer (`layouts/default.vue`): in der Spalte „Seiten“ und neben
-Impressum/Datenschutz. In der Hauptnavigation steht sie bewusst nicht, weil sie sich an Fachpublikum richtet.
+Eingebunden ist die Seite im Footer (`layouts/default.vue`: Spalte „Seiten“ und neben Impressum/Datenschutz) und
+im Impressum (`pages/impressum.vue`, Absatz „Digitale Signatur“). In der Hauptnavigation steht sie bewusst nicht,
+weil sie sich an Fachpublikum richtet.
 
 ## Datenfluss
 
