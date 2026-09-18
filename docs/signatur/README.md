@@ -49,7 +49,7 @@ scripts/
 public/
 ├── oeffentliches_zertifikat.pem    Immer das aktuelle Zertifikat (Download auf der Seite)
 ├── oeffentliches_zertifikat.pem.asc  OpenPGP-Signatur der PEM-Datei
-├── openpgp_schluessel.asc          Öffentlicher OpenPGP-Schlüssel (nur Firmen-User-ID)
+├── openpgp_schluessel.asc          Öffentlicher OpenPGP-Schlüssel (primär: daniel@e-glaser.de)
 └── zertifikate/
     ├── elektro-glaser-signatur-<JAHR>.pem   Archiv, eine Datei pro Jahr
     └── index.json                           Manifest (Jahr, Gültigkeit, Fingerprint, Seriennummer)

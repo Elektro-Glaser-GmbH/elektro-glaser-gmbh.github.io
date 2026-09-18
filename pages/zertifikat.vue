@@ -248,8 +248,8 @@ async function copy(key: string, text: string) {
         <template #fallback><p class="cert-muted">E-Mail-Adressen werden geladen …</p></template>
       </ClientOnly>
       <p class="hint">
-        Der Download auf dieser Seite enthält nur die Firmenadresse. Wer den Schlüssel vom Keyserver abruft, erhält alle
-        Adressen – der Fingerprint ist in beiden Fällen identisch.
+        Primäre Adresse ist daniel@e-glaser.de – sie erscheint beim Prüfen einer Signatur als Unterzeichner. Download und
+        Keyserver enthalten denselben Schlüssel mit identischem Fingerprint.
       </p>
       <p class="cert-btn-row">
         <a :href="`https://keys.openpgp.org/search?q=${encodeURIComponent(OPENPGP_KEY_ID)}`" target="_blank" rel="noopener" class="btn-outline">

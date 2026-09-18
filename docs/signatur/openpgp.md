@@ -13,14 +13,17 @@ Zweiter, vom DNS unabhängiger Prüfweg: Der OpenPGP-Schlüssel des Geschäftsf�
 |---|---|
 | Fingerprint | `214A F7FD 2FC8 A6AF 3E54  3C00 88B8 848C E9C1 9294` |
 | Algorithmus | Ed25519 (Signieren), Cv25519-Unterschlüssel (Verschlüsseln) |
-| User-ID auf der Website | `Daniel Gerold Glaser <daniel@e-glaser.de>` |
+| Primäre User-ID | `Daniel Gerold Glaser <daniel@e-glaser.de>` (seit 18.09.2026) |
 | Erstellt / gültig bis | 28.01.2025 / **29.01.2028** |
-| Keyserver | [keys.openpgp.org](https://keys.openpgp.org/search?q=214AF7FD2FC8A6AF3E543C0088B8848CE9C19294), `daniel@e-glaser.de` bestätigt |
+| Keyserver | [keys.openpgp.org](https://keys.openpgp.org/search?q=214AF7FD2FC8A6AF3E543C0088B8848CE9C19294), alle vier Adressen bestätigt |
 | Privater Schlüssel | im lokalen gpg-agent, Freigabe per Passphrase (pinentry) |
 
-Auf dem Keyserver sind weitere bestätigte User-IDs am Schlüssel. Wer ihn dort abruft, sieht die dort primäre
-User-ID (derzeit `daniel.glaser@energiewende-erhlangen.de`) als Unterzeichner. Die Website bietet deshalb zusätzlich
-einen minimalen Export nur mit der Firmenadresse an:
+Weitere bestätigte User-IDs: `daniel.glaser@energiewende-erhlangen.de`, `daniel.glaser@bizzmark.io`,
+`daniel.glaser@chaintronics.com`. Lokaler Schlüsselbund, Keyserver und der Download auf der Website enthalten alle
+vier Adressen, jeweils mit `daniel@e-glaser.de` als primärer User-ID. Beim Prüfen einer Signatur erscheint daher
+überall diese Adresse als Unterzeichner.
+
+Export für die Website (alle User-IDs, ohne Fremdsignaturen):
 
 ```bash
 gpg --armor --export-options export-minimal --export 214AF7FD2FC8A6AF3E543C0088B8848CE9C19294 \
@@ -45,6 +48,22 @@ Aktuelle User-IDs auf dem Keyserver anzeigen:
 curl -s https://keys.openpgp.org/vks/v1/by-fingerprint/214AF7FD2FC8A6AF3E543C0088B8848CE9C19294 \
   | gpg --show-keys --with-colons | awk -F: '$1=="uid"{print $10}'
 ```
+
+### Primäre User-ID ändern
+
+Die primäre User-ID ist diejenige mit der neuesten Selbstsignatur mit Primär-Kennzeichen. Ändern (fragt nach der
+Passphrase), dann Keyserver und Website aktualisieren:
+
+```bash
+FPR=214AF7FD2FC8A6AF3E543C0088B8848CE9C19294
+gpg --recv-keys --keyserver hkps://keys.openpgp.org $FPR     # vorher alle User-IDs lokal zusammenführen
+gpg --quick-set-primary-uid $FPR "Daniel Gerold Glaser <daniel@e-glaser.de>"
+gpg --export --export-options export-minimal $FPR | curl -T - https://keys.openpgp.org
+gpg --armor --export-options export-minimal --export $FPR > public/openpgp_schluessel.asc
+```
+
+Bereits bestätigte Adressen bleiben nach dem Upload bestätigt; der Link „Proceed with verification“ in der Antwort
+muss nur für **neue** Adressen genutzt werden.
 
 ### Schlüssel ersetzen
 
@@ -83,8 +102,8 @@ gpg --keyserver hkps://keys.openpgp.org --recv-keys 214AF7FD2FC8A6AF3E543C0088B8
 gpg --verify oeffentliches_zertifikat.pem.asc oeffentliches_zertifikat.pem
 ```
 
-Erwartet: `Korrekte Signatur von "…"` mit Fingerprint `214A F7FD … E9C1 9294`. Angezeigt wird die primäre User-ID
-des importierten Schlüssels – beim Website-Export `daniel@e-glaser.de`, vom Keyserver ggf. eine andere Adresse.
+Erwartet: `Korrekte Signatur von "Daniel Gerold Glaser <daniel@e-glaser.de>"`, dazu die übrigen User-IDs als
+„alias“, Fingerprint `214A F7FD … E9C1 9294`.
 
 ## Ablauf des PGP-Schlüssels
 
