@@ -55,26 +55,34 @@ Unter [desec.io](https://desec.io) → Domain `e-glaser.de` → Record Set hinzu
 
 ### API
 
-Alle Änderungen eines Jahreswechsels in einem Aufruf (atomar). Das Token liegt nicht im Repository, sondern im
-Passwortmanager.
+Alle Änderungen eines Jahreswechsels in einem Aufruf (atomar). Das Token liegt in OpenBao im Namespace
+`elektro-glaser` unter **`secret/desec-sig`** (Felder `token`, `username`, `note`). Es ist ausschließlich für die
+`_signatur`-Einträge gedacht und mit dem normalen Repo-Token (read-only, per direnv unter
+`~/GIT/Elektro-Glaser`) lesbar – kein Root-Zugriff nötig.
+
+Das Token wird per `--config -` über stdin an `curl` übergeben, damit es weder in der Prozessliste noch in der
+Shell-History erscheint. Die Einträge werden aus dem Manifest erzeugt statt abgetippt:
 
 ```bash
-export DESEC_TOKEN=…   # deSEC-API-Token, nur für diese Shell
-curl -sS -X PATCH https://desec.io/api/v1/domains/e-glaser.de/rrsets/ \
-  -H "Authorization: Token $DESEC_TOKEN" \
-  -H "Content-Type: application/json" \
-  --data @- <<'EOF'
-[
-  {"subname": "_signatur",      "type": "TXT", "ttl": 3600,
-   "records": ["\"v=sig1; y=2027; alg=sha256; fp=<HEX_2027>\""]},
-  {"subname": "2027._signatur", "type": "TXT", "ttl": 3600,
-   "records": ["\"v=sig1; y=2027; alg=sha256; fp=<HEX_2027>\""]},
-  {"subname": "2017._signatur", "type": "TXT", "records": []}
-]
-EOF
+# Payload aus public/zertifikate/index.json bauen (aktuelles Jahr + 10 Jahre Historie)
+node -e '
+const m = require("./public/zertifikate/index.json").certificates.sort((a, b) => b.year - a.year)
+const cur = m[0]
+const v = c => `"v=sig1; y=${c.year}; alg=sha256; fp=${c.sha256.replace(/:/g, "").toLowerCase()}"`
+const rr = [{ subname: "_signatur", type: "TXT", ttl: 3600, records: [v(cur)] }]
+for (const c of m.filter(c => c.year > cur.year - 10))
+  rr.push({ subname: `${c.year}._signatur`, type: "TXT", ttl: 3600, records: [v(c)] })
+console.log(JSON.stringify(rr))' > /tmp/desec-payload.json
+
+T=$(bao kv get -field=token secret/desec-sig)
+printf 'header = "Authorization: Token %s"\n' "$T" | curl -sS --config - -X PATCH \
+  -H "Content-Type: application/json" --data @/tmp/desec-payload.json \
+  https://desec.io/api/v1/domains/e-glaser.de/rrsets/
+unset T; rm /tmp/desec-payload.json
 ```
 
-Ein RRset mit `"records": []` wird gelöscht.
+Veraltete Jahres-Einträge (älter als 10 Jahre, siehe `--dns`-Ausgabe) werden gelöscht, indem man sie mit
+`"records": []` in den Payload aufnimmt, z. B. `{"subname": "2016._signatur", "type": "TXT", "records": []}`.
 
 ## Prüfen
 

@@ -39,7 +39,8 @@ Checkliste für das jährliche Signaturzertifikat. Beispiel: Wechsel von 2026 au
   git push
   ```
 
-- [ ] DNS-Einträge nach Skript-Ausgabe setzen (siehe [dns.md](dns.md)):
+- [ ] DNS-Einträge per deSEC-API setzen – Token aus `secret/desec-sig`, Befehl siehe
+  [dns.md → API](dns.md#api). Soll-Zustand zum Abgleich:
 
   ```bash
   bash scripts/generate-signing-cert.sh --dns
