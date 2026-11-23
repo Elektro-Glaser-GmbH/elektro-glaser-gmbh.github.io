@@ -1,0 +1,87 @@
+# EMoleCAD-Beispiel: Einfamilienhaus mit PV, Speicher, Wärmepumpe und Wallbox
+projekt:
+  titel: Einfamilienhaus Muster – Übersicht
+  kunde: Familie Muster
+  adresse: Musterweg 1, 12345 Musterstadt
+  ersteller: Elektro-Glaser GmbH
+  datum: 2026-11-23
+  zeichnungsnummer: BSP-EFH-001
+  revision: A
+netz:
+  form: TN-C-S
+  spannung: 230/400 V
+komponenten:
+  # ------------------------------------------------ Hausanschluss und ungezählter Bereich
+  - { id: XD1, typ: hausanschluss, name: HAK, params: { sicherung: 63, sicherungstyp: NH00 gG, netzbetreiber: Netzbetreiber } }
+  - { id: WD1, typ: sammelschiene, name: Sammelschiene ungezählt, quelle: XD1, kabel: { typ: NYY-J, querschnitt: 5G16 }, params: { nennstrom: 63, querschnitt: 12x5 } }
+  - { id: PAS1, typ: pas, params: { erder: Fundamenterder, querschnitt: 16 } }
+  - { id: FA1, typ: spd, name: Überspannungsschutz, quelle: WD1, params: { spdtyp: 1+2 } }
+  - { id: FC2, typ: ls, name: Vorzählerbereich, quelle: WD1, phase: L1, params: { charakteristik: B, nennstrom: 6 } }
+  - { id: KE1, typ: smgw, name: Smart-Meter-Gateway, quelle: FC2 }
+  - { id: KE2, typ: steuerbox, name: Steuerbox, quelle: FC2, params: { art: FNN-Steuerbox } }
+
+  # ------------------------------------------------ Zählerplatz
+  - { id: FC1, typ: sls, quelle: WD1, params: { nennstrom: 50 } }
+  - { id: PG1, typ: zaehler, name: Zweirichtungszähler, quelle: FC1, params: { art: Zweirichtung } }
+  # Energiezähler des Wechselrichters (Smart Meter) zwischen Zähler und HLAK misst Netzbezug und Einspeisung
+  - { id: PG2, typ: zaehler, name: Energiezähler Wechselrichter (Smart Meter), quelle: PG1, params: { art: Unterzähler } }
+  - { id: XD2, typ: hlak, quelle: PG2, params: { querschnitt: "35", nennstrom: 63 } }
+
+  # ------------------------------------------------ FI-Gruppe 1: Erdgeschoss
+  - { id: FB1, typ: rcd, name: FI Erdgeschoss, quelle: XD2, params: { nennstrom: 40, fehlerstrom: 30, rcdtyp: A } }
+  - { id: FC5, typ: ls, quelle: FB1, phase: L1, params: { charakteristik: B, nennstrom: 10 } }
+  - { id: EA1, typ: verbraucher, name: Licht EG, quelle: FC5, kabel: { typ: NYM-J, querschnitt: "3G1,5" }, params: { verwendung: Beleuchtung } }
+  - { id: FC6, typ: ls, quelle: FB1, phase: L2, params: { charakteristik: B, nennstrom: 16 } }
+  - { id: XD3, typ: verbraucher, name: Steckdosen Wohnen, quelle: FC6, kabel: { typ: NYM-J, querschnitt: "3G2,5" }, params: { verwendung: Steckdosen } }
+  - { id: FC7, typ: ls, quelle: FB1, phase: L3, params: { charakteristik: B, nennstrom: 16 } }
+  - { id: XD4, typ: verbraucher, name: Steckdosen Küche, quelle: FC7, kabel: { typ: NYM-J, querschnitt: "3G2,5" }, params: { verwendung: Steckdosen } }
+  - { id: FC8, typ: ls, quelle: FB1, pole: 3, params: { charakteristik: B, nennstrom: 20 } }
+  - { id: EB1, typ: verbraucher, name: Elektroherd, quelle: FC8, pole: 3, kabel: { typ: NYM-J, querschnitt: "5G2,5" }, params: { verwendung: Herd, leistung: 10 } }
+
+  # ------------------------------------------------ FI-Gruppe 2: Obergeschoss
+  - { id: FB2, typ: rcd, name: FI Obergeschoss, quelle: XD2, params: { nennstrom: 40, fehlerstrom: 30, rcdtyp: A } }
+  - { id: FC9, typ: ls, quelle: FB2, phase: L2, params: { charakteristik: B, nennstrom: 10 } }
+  - { id: EA2, typ: verbraucher, name: Licht OG, quelle: FC9, kabel: { typ: NYM-J, querschnitt: "3G1,5" }, params: { verwendung: Beleuchtung } }
+  - { id: FC10, typ: ls, quelle: FB2, phase: L3, params: { charakteristik: B, nennstrom: 16 } }
+  - { id: XD5, typ: verbraucher, name: Steckdosen Bad, quelle: FC10, kabel: { typ: NYM-J, querschnitt: "3G2,5" }, params: { verwendung: Steckdosen } }
+  - { id: FC11, typ: ls, quelle: FB2, phase: L1, params: { charakteristik: B, nennstrom: 16 } }
+  - { id: XD6, typ: verbraucher, name: Steckdosen Schlafen/Kinder, quelle: FC11, kabel: { typ: NYM-J, querschnitt: "3G2,5" }, params: { verwendung: Steckdosen } }
+
+  # ------------------------------------------------ Kühlgeräte: je ein eigener FI/LS (2-polig)
+  - { id: FB3, typ: rcbo, quelle: XD2, phase: L2, params: { charakteristik: B, nennstrom: 16, fehlerstrom: 30, rcdtyp: A } }
+  - { id: EC1, typ: verbraucher, name: Kühlschrank, quelle: FB3, kabel: { typ: NYM-J, querschnitt: "3G2,5" }, params: { verwendung: Kühlgerät } }
+  - { id: FB4, typ: rcbo, quelle: XD2, phase: L3, params: { charakteristik: B, nennstrom: 16, fehlerstrom: 30, rcdtyp: A } }
+  - { id: EC2, typ: verbraucher, name: Gefriertruhe, quelle: FB4, kabel: { typ: NYM-J, querschnitt: "3G2,5" }, params: { verwendung: Gefriergerät } }
+
+  # ------------------------------------------------ Wallbox
+  - { id: FB5, typ: rcd, name: FI Wallbox, quelle: XD2, params: { nennstrom: 40, fehlerstrom: 30, rcdtyp: A EV } }
+  - { id: FC12, typ: ls, quelle: FB5, pole: 3, params: { charakteristik: C, nennstrom: 20 } }
+  - { id: XD7, typ: wallbox, name: Wallbox Carport, quelle: FC12, kabel: { typ: NYM-J, querschnitt: 5G6, laenge: 15 }, params: { leistung: 11, steuerbar: true } }
+
+  # ------------------------------------------------ Wärmepumpe
+  - { id: FC4, typ: ls, quelle: XD2, pole: 3, params: { charakteristik: C, nennstrom: 16 } }
+  - { id: EG1, typ: waermepumpe, name: Wärmepumpe, quelle: FC4, kabel: { typ: NYM-J, querschnitt: "5G2,5" }, params: { leistung: 4, steuerbar: true } }
+
+  # ------------------------------------------------ PV mit Hybrid-Wechselrichter und Speicher
+  - { id: FC3, typ: ls, quelle: XD2, pole: 3, params: { charakteristik: B, nennstrom: 20 } }
+  - { id: TB1, typ: wechselrichter, name: Hybrid-Wechselrichter, quelle: FC3, kabel: { typ: NYM-J, querschnitt: 5G4 }, params: { leistung: 10, modell: Hybrid-WR, hybrid: true } }
+  - { id: GC1, typ: pv_generator, name: PV-Dach Süd, quelle: TB1, kabel: { typ: H1Z2Z2-K, querschnitt: 1x6 }, params: { leistung: 9.9, module: 22, strings: 2 } }
+  - { id: CC1, typ: speicher, name: Batteriespeicher, quelle: TB1, params: { kapazitaet: 10, leistung: 5 } }
+
+# Informationsverbindungen (strichpunktiert im Plan)
+datenverbindungen:
+  - { von: KE1, nach: PG1, art: LMN }
+  - { von: KE2, nach: KE1, art: CLS }
+  - { von: KE2, nach: EG1, art: Steuersignal }
+  - { von: KE2, nach: XD7, art: Steuersignal }
+  - { von: KE2, nach: TB1, art: Steuersignal }
+  - { von: PG2, nach: TB1, art: Modbus RTU }
+
+# Potentialausgleich (grün im Plan)
+potentialausgleich:
+  - { von: PAS1, nach: XD1, querschnitt: 16 }
+  - { von: PAS1, nach: WD1, querschnitt: 16 }
+  - { von: PAS1, nach: FA1, querschnitt: 16 }
+  - { von: PAS1, nach: GC1, querschnitt: 6 }    # Modulgestell / PV-Generator
+  - { von: PAS1, nach: TB1, querschnitt: 6 }    # Wechselrichter
+  - { von: PAS1, nach: CC1, querschnitt: 6 }    # Batteriespeicher
