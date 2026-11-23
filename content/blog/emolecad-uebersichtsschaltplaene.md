@@ -44,6 +44,16 @@ den grafischen Editor im Stil von Node-RED: Bausteine aus der Bibliothek auf die
 verbinden, fertig. YAML und Editor sind nur zwei Ansichten auf dieselben Daten, man kann jederzeit
 zwischen beiden wechseln.
 
+![Grafischer Editor von EMoleCAD mit geöffneter Detailansicht des Hausanschlusses -XD1](/img/blog/emolecad/emolecad-editor-hak.webp)
+
+So sieht das im Browser aus: Links liegt die Bibliothek mit allen Bausteinen, in der Mitte der Baum
+der Anlage vom Hausanschluss über Zähler und HLAK bis zu den FI-Gruppen. Die Planansicht ist hier
+eingeklappt, sie steht sonst rechts daneben und baut sich bei jeder Änderung sofort neu auf.
+Ein Klick auf einen Baustein öffnet seine Eigenschaften, hier der Hausanschlusskasten `-XD1` mit
+Vorsicherung NH00 gG 63 A, Netzbetreiber und der Verbindung zur Potentialausgleichsschiene.
+Datenleitungen wie LMN, CLS und Modbus erscheinen violett, der Potentialausgleich grün, und oben
+rechts meldet die Prüfung „Keine Probleme“.
+
 ## Was hinten rauskommt
 
 - **Einpoliger und allpoliger Übersichtsschaltplan** aus derselben Beschreibung, umschaltbar mit einem Klick
@@ -112,3 +122,8 @@ Ein Hinweis noch, weil es mir wichtig ist: EMoleCAD ist ein Hilfsmittel zum Zeic
 keine Planung und Prüfung durch eine Elektrofachkraft und keine Abstimmung mit dem Netzbetreiber.
 
 Schaut mal rein und sagt mir gerne, was ihr davon haltet!
+
+![EMoleCAD mit Bibliothek, grafischem Editor und Live-Plan nebeneinander](/img/blog/emolecad/emolecad-gesamtansicht.webp)
+
+*Alles auf einen Blick: Bibliothek, Editor und der Plan, der sich bei jeder Änderung live mitzeichnet –
+inklusive eigenem Logo im Schriftfeld.*
